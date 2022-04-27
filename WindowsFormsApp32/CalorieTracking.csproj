@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9F17F7A2-91F3-483D-A8E0-F5C2E25C6FAC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WindowsFormsApp32</RootNamespace>
+    <AssemblyName>WindowsFormsApp32</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\CreateUser.cs" />
+    <Compile Include="Helpers\UserLogin.cs" />
+    <Compile Include="Database\DatabaseContext.cs" />
+    <Compile Include="Entity\Category.cs" />
+    <Compile Include="Entity\Food.cs" />
+    <Compile Include="Entity\Meal.cs" />
+    <Compile Include="Entity\MealDetail.cs" />
+    <Compile Include="Entity\MealType.cs" />
+    <Compile Include="Entity\User.cs" />
+    <Compile Include="Entity\UserDetail.cs" />
+    <Compile Include="Master.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master.Designer.cs">
+      <DependentUpon>Master.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202191459453_InitialCreate.cs" />
+    <Compile Include="Migrations\202202191459453_InitialCreate.designer.cs">
+      <DependentUpon>202202191459453_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202211456421_new.cs" />
+    <Compile Include="Migrations\202202211456421_new.designer.cs">
+      <DependentUpon>202202211456421_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202271117568_datetime_changed.cs" />
+    <Compile Include="Migrations\202202271117568_datetime_changed.designer.cs">
+      <DependentUpon>202202271117568_datetime_changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202271137179_datetime_changed_last.cs" />
+    <Compile Include="Migrations\202202271137179_datetime_changed_last.designer.cs">
+      <DependentUpon>202202271137179_datetime_changed_last.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="NewUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewUser.Designer.cs">
+      <DependentUpon>NewUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Master.resx">
+      <DependentUpon>Master.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202191459453_InitialCreate.resx">
+      <DependentUpon>202202191459453_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202211456421_new.resx">
+      <DependentUpon>202202211456421_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202271117568_datetime_changed.resx">
+      <DependentUpon>202202271117568_datetime_changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202271137179_datetime_changed_last.resx">
+      <DependentUpon>202202271137179_datetime_changed_last.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUser.resx">
+      <DependentUpon>NewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AdobeStock_271185487-scaled.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AdobeStock_271185487-scaled1.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AdobeStock_271185487-scaled2.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lala.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\def.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Kahvaltılık.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Total.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lala.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bilgipop.com-diyet-corba-tarifleri.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uygulamagirişfoto.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\anaekran123.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hizli-kilo-verme-yollari.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hermes-rivera-Ww8eQWjMJWk-unsplash.jpg" />
+    <None Include="Resources\derrea.jfif" />
+    <None Include="Resources\bread.jfif" />
+    <None Include="Resources\vegetables.jpg" />
+    <None Include="Resources\1072814_d1177fb9fef4d4e538086c336f49dec0_600x600.jpg" />
+    <None Include="Resources\uygulamagirişfoto1.jpg" />
+    <None Include="Resources\meyve.jpg" />
+    <None Include="Resources\etürünleri.jpg" />
+    <None Include="Resources\süt.jpg" />
+    <None Include="Resources\atıştırmalık3.jpg" />
+    <None Include="Resources\1_biryani.jpg" />
+    <None Include="Resources\çorbalar.jpg" />
+    <None Include="Resources\AdobeStock_271185487-scaled3.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\createUser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\createUser2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\createUser4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CreateUser5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CreateUser7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\11.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\81.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bread2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kofe-coffee-milk-moloko-ziorna-ruka-chernyi-fon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\süt1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Daily.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daily2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daily3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daily6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daily7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\daily8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\weakly.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monthly.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

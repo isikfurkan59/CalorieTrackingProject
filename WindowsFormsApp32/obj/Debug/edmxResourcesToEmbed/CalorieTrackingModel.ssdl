@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CalorieTrackingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Foods">
+    <Key>
+      <PropertyRef Name="FoodID" />
+    </Key>
+    <Property Name="FoodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodName" Type="nvarchar(max)" />
+    <Property Name="Calorie" Type="float" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MealDetails">
+    <Key>
+      <PropertyRef Name="MealDetailID" />
+    </Key>
+    <Property Name="MealDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MealID" Type="int" Nullable="false" />
+    <Property Name="FoodID" Type="int" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="Calorie/Kcal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Meals">
+    <Key>
+      <PropertyRef Name="MealID" />
+    </Key>
+    <Property Name="MealID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MealDate" Type="datetime" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="MealTypeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MealTypes">
+    <Key>
+      <PropertyRef Name="MealTypeID" />
+    </Key>
+    <Property Name="MealTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MealTypeName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="UserDetails">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="Boy" Type="int" Nullable="false" />
+    <Property Name="Kilo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Yas" Type="int" Nullable="false" />
+    <Property Name="Gender" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_dbo_Foods_dbo_Categories_CategoryID">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Foods" Type="Self.Foods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Foods">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_MealDetails_dbo_Foods_FoodID">
+    <End Role="Foods" Type="Self.Foods" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MealDetails" Type="Self.MealDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Foods">
+        <PropertyRef Name="FoodID" />
+      </Principal>
+      <Dependent Role="MealDetails">
+        <PropertyRef Name="FoodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_MealDetails_dbo_Meals_MealID">
+    <End Role="Meals" Type="Self.Meals" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MealDetails" Type="Self.MealDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Meals">
+        <PropertyRef Name="MealID" />
+      </Principal>
+      <Dependent Role="MealDetails">
+        <PropertyRef Name="MealID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Meals_dbo_MealTypes_MealTypeID">
+    <End Role="MealTypes" Type="Self.MealTypes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Meals" Type="Self.Meals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MealTypes">
+        <PropertyRef Name="MealTypeID" />
+      </Principal>
+      <Dependent Role="Meals">
+        <PropertyRef Name="MealTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Meals_dbo_UserDetails_UserID">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Meals" Type="Self.Meals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Meals">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserDetails_dbo_Users_UserID">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserDetails">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CalorieTrackingModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Foods" EntityType="Self.Foods" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MealDetails" EntityType="Self.MealDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Meals" EntityType="Self.Meals" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MealTypes" EntityType="Self.MealTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_Foods_dbo_Categories_CategoryID" Association="Self.FK_dbo_Foods_dbo_Categories_CategoryID">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Foods" EntitySet="Foods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_MealDetails_dbo_Foods_FoodID" Association="Self.FK_dbo_MealDetails_dbo_Foods_FoodID">
+      <End Role="Foods" EntitySet="Foods" />
+      <End Role="MealDetails" EntitySet="MealDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_MealDetails_dbo_Meals_MealID" Association="Self.FK_dbo_MealDetails_dbo_Meals_MealID">
+      <End Role="Meals" EntitySet="Meals" />
+      <End Role="MealDetails" EntitySet="MealDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Meals_dbo_MealTypes_MealTypeID" Association="Self.FK_dbo_Meals_dbo_MealTypes_MealTypeID">
+      <End Role="MealTypes" EntitySet="MealTypes" />
+      <End Role="Meals" EntitySet="Meals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Meals_dbo_UserDetails_UserID" Association="Self.FK_dbo_Meals_dbo_UserDetails_UserID">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="Meals" EntitySet="Meals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserDetails_dbo_Users_UserID" Association="Self.FK_dbo_UserDetails_dbo_Users_UserID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserDetails" EntitySet="UserDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
